@@ -271,7 +271,7 @@ func (p *MMPostStreamService) StreamToPost(ctx context.Context, stream *llm.Text
 					post.Message += "\n\n"
 				}
 				p.mmClient.LogError("Streaming result to post failed partway", "error", err)
-				post.Message = T("agents.stream_to_post_access_llm_error", "Sorry! An error occurred while accessing the LLM. See server logs for details.")
+				post.Message += T("agents.stream_to_post_access_llm_error", "Sorry! An error occurred while accessing the LLM. See server logs for details.")
 
 				// Persist any accumulated reasoning before erroring out
 				if reasoningBuffer.Len() > 0 {
